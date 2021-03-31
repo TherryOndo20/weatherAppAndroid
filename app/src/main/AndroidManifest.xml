@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.myweatherapp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyWeatherApp"
+        android:usesCleartextTraffic="true">
+         <activity
+            android:name=".AddCityPage"
+            android:label="@string/title_activity_add_city_page"
+            android:theme="@style/Theme.MyWeatherApp.NoActionBar" />
+        <activity android:name=".ListCity" />
+        <activity android:name=".CapeTown" />
+        <activity
+            android:name=".Rome"
+            android:label="@string/title_activity_rome"
+            android:theme="@style/Theme.MyWeatherApp.NoActionBar" />
+        <activity android:name=".Vienna" />
+        <activity android:name=".Prague" />
+        <activity android:name=".Dublin" />
+        <activity android:name=".London" />
+        <activity android:name=".Copenhagen" />
+        <activity android:name=".Berlin" />
+        <activity android:name=".Paris" />
+        <activity android:name=".Madrid" />
+        <activity android:name=".Lisbon" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
