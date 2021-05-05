@@ -87,4 +87,36 @@ public class City  {
     public String setHumidity(String humidity) {
         return humidity;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        City city = (City) o;
+
+        if (imageView != city.imageView) return false;
+        if (temperature != null ? !temperature.equals(city.temperature) : city.temperature != null)
+            return false;
+        if (description != null ? !description.equals(city.description) : city.description != null)
+            return false;
+        if (city_name != null ? !city_name.equals(city.city_name) : city.city_name != null)
+            return false;
+        if (country_name != null ? !country_name.equals(city.country_name) : city.country_name != null)
+            return false;
+        if (time != null ? !time.equals(city.time) : city.time != null) return false;
+        return humidity != null ? humidity.equals(city.humidity) : city.humidity == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = temperature != null ? temperature.hashCode() : 0;
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (city_name != null ? city_name.hashCode() : 0);
+        result = 31 * result + (country_name != null ? country_name.hashCode() : 0);
+        result = 31 * result + imageView;
+        result = 31 * result + (time != null ? time.hashCode() : 0);
+        result = 31 * result + (humidity != null ? humidity.hashCode() : 0);
+        return result;
+    }
 }

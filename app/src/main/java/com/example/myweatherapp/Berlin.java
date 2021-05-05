@@ -55,88 +55,9 @@ public class Berlin extends AppCompatActivity {
         description = findViewById(R.id.description);
 
 
-        findWeather();
-    }
-
-
-    public void findWeather() {
-        String url = "http://api.openweathermap.org/data/2.5/weather?q=berlin&appid=157b4de0b117433be579c0f828d2aa6c&units=metric";
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                // Calling API
-
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-
-                    //find country
-                    JSONObject object1 = jsonObject.getJSONObject("sys");
-                    String find_country = object1.getString("country");
-                    country.setText(find_country + " |");
-                    // find sunrise
-                    String find_sunrise = object1.getString("sunrise");
-                    sunrise.setText(find_sunrise);
-                    // find sunset
-                    String find_sunset = object1.getString("sunset");
-                    sunset.setText(find_sunset);
-
-                    //find city
-                    String find_city = jsonObject.getString("name");
-                    city.setText(find_city);
-
-                    //find temperature
-                    JSONObject object2 = jsonObject.getJSONObject("main");
-                    String find_temp = object2.getString("temp");
-                    String find_temp_max = object2.getString("temp_max");
-                    String find_temp_min = object2.getString("temp_min");
-
-                    temperature.setText(find_temp + " °C");
-                    max.setText(find_temp_max + " °C");
-                    min.setText(find_temp_min + " °C");
-
-                    //find humidity
-                    String find_humidity = object2.getString("humidity");
-                    humidity.setText(find_humidity + " %");
-
-                    //find pressure
-                    String find_pressure = object2.getString("pressure");
-                    pressure.setText(find_pressure + "hPa");
-
-
-                    //find image icon
-                    JSONArray jsonArray = jsonObject.getJSONArray("weather");
-                    JSONObject obj = jsonArray.getJSONObject(0);
-                    String icon = obj.getString("icon");
-                    Picasso.get().load("http://openweathermap.org/img/wn/" + icon + "@2x.png").into(imageView);
-
-                    // find wind speed
-                    JSONObject object3 = jsonObject.getJSONObject("wind");
-                    String find_speed = object3.getString("speed");
-                    windspeed.setText(find_speed + " km/h");
-
-                    //find date and time
-                    Calendar calendar = Calendar.getInstance();
-                    SimpleDateFormat stf = new SimpleDateFormat("HH:mm:ss \ndd/MM/yyyy");
-                    String date = stf.format(calendar.getTime());
-                    time.setText(date);
-
-                    //find description
-                    String find_description = obj.getString("description");
-                    description.setText(find_description);
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(Berlin.this, error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-        RequestQueue requestQueue = Volley.newRequestQueue(Berlin.this);
-        requestQueue.add(stringRequest);
+        FindWeather.excecute("berlin", country, sunrise, sunset, city,
+                temperature, max, min, humidity, pressure,
+                windspeed, description, time, MyApplication.getCityList(), imageView, this);
     }
 
     public boolean onTouchEvent(MotionEvent touchEvent){

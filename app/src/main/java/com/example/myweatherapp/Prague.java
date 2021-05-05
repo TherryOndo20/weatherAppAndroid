@@ -52,7 +52,9 @@ public class Prague extends AppCompatActivity {
         description = findViewById(R.id.description);
 
 
-        findWeather();
+        FindWeather.excecute("prague", country, sunrise, sunset, city,
+                temperature, max, min, humidity, pressure,
+                windspeed, description, time, MyApplication.getCityList(), imageView, this);
     }
 
 
